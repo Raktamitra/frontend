@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RaktaMitra | Ashyam Foundation</title>
+  <link href="./dist/output.css" rel="stylesheet"> <!-- If you migrate to Tailwind CLI later -->
+  <link href="./css/style.css" rel="stylesheet">   <!-- Optional for extra styling -->
+</head>
+
+<body class="text-gray-800 bg-opacity-90 backdrop-blur-md">
+
+  <audio id="click-sound" src="./assets/audio/click.mp3" preload="auto"></audio>
+
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+
+    <header class="w-full max-w-5xl mb-10 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-white flex gap-2 items-center">
+        <img src="./assets/images/logo.png" class="w-8 h-8" alt="RaktaMitra Logo">
+        RaktaMitra
+      </h1>
+      <a href="login.html" class="text-white bg-white/20 px-4 py-2 rounded hover:bg-white/30 font-medium">Login</a>
+    </header>
+
+    <section id="home-section" class="w-full max-w-3xl bg-white/90 rounded-lg shadow-lg p-8 text-center">
+      <h2 class="text-4xl font-bold text-red-700 mb-4">Donate Blood, Save Lives</h2>
+      <p class="text-gray-700 mb-6">
+        Powered by <span class="font-bold text-red-600">Ashyam Foundation</span>, RaktaMitra connects donors with
+        patients across India. Join the movement and be a hero today.
+      </p>
+      <button id="get-started-btn"
+        class="mt-4 bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">Get Started</button>
+    </section>
+
+    <footer class="mt-12 text-white text-sm text-center opacity-90">
+      &copy; 2025 RaktaMitra &bull; An Initiative by Ashyam Foundation
+    </footer>
+
+  </div>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./js/home.js"></script>
+</body>
+</html>
