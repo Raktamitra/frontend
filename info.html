@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blood Donation Info - RaktaMitra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="text-gray-800 bg-white flex">
+
+  <!-- SIDEBAR -->
+  <nav class="w-64 bg-red-600 text-white flex flex-col p-6 fixed h-screen shadow-lg z-10">
+    <a href="about_raktamitra.html" class="flex items-center space-x-3 mb-10">
+      <img src="logo.png" alt="RaktaMitra Logo" class="h-10 w-10 rounded-full border-2 border-white" />
+      <span class="text-2xl font-bold hover:underline">RaktaMitra</span>
+    </a>
+    <div class="space-y-3 text-base">
+      <a href="about.html" class="block px-4 py-2 rounded bg-white text-red-700 font-semibold">About Ashayam</a>
+      <a href="faq.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">FAQs</a>
+      <a href="info.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Blood Donation</a>
+      <a href="health.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Health Check</a>
+      <a href="privpol.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Privacy Policy</a>
+      <a href="contact.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Contact Us</a>
+      <a href="logout" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Logout</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="ml-64 w-full">
+    <main class="p-10 space-y-20">
+
+      <!-- ABOUT BLOOD -->
+      <section id="about" class="flex flex-col md:flex-row items-center gap-8">
+        <img src="pictures/cells.png" alt="Blood cells" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[70%] text-right">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">What is Blood?</h2>
+          <p class="text-lg leading-relaxed">
+            Blood is the vital fluid that circulates throughout our bodies, performing a wide range of essential functions that sustain life. It delivers oxygen from the lungs to the tissues, transports nutrients from the digestive system to cells, and carries hormones to various organs to regulate bodily functions. Simultaneously, it removes carbon dioxide and other metabolic waste products, ensuring that the internal environment remains balanced. Blood also plays a pivotal role in immune defense, helping to fight infections by transporting white blood cells and antibodies to sites of injury or invasion. Additionally, it aids in clotting through platelets, preventing excessive blood loss during wounds. Blood is composed of several components — red blood cells, white blood cells, platelets, and plasma — each with a unique function. These components are primarily produced in the bone marrow and work together to maintain homeostasis, support healing, and keep every organ system functioning optimally. Without blood, the body would not be able to regulate temperature, protect itself from pathogens, or repair tissue damage.
+
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOOD DONATION -->
+      <section id="donation" class="flex flex-col md:flex-row-reverse items-center gap-8 bg-orange-100 p-8 rounded-lg shadow">
+        <img src="pictures/donate.png" alt="Donate blood" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[75%] text-left">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Why Donate Blood?</h2>
+          <p class="text-lg leading-relaxed">
+            Donating blood is a simple yet powerful act of kindness that can have a life-changing impact. With just one donation, you have the potential to save up to three lives by providing essential support for a wide range of medical needs. Blood transfusions are crucial during surgeries, for victims of accidents and trauma, in childbirth complications, and for patients battling serious conditions such as cancer, anemia, thalassemia, and blood disorders. Since blood cannot be artificially created in a lab, the only source is from healthy, voluntary donors. This makes each contribution incredibly valuable and irreplaceable. The donation process is quick, safe, and relatively painless, typically taking less than an hour. Beyond the immediate benefits to recipients, donating blood also helps build a sense of community and compassion, promoting a culture of care and solidarity. It’s a small gesture that leaves a lasting impact on those in need and strengthens the healthcare system as a whole.
+          </p>
+        </div>
+      </section>
+
+      <!-- FACTS -->
+      <section id="facts" class="flex flex-col md:flex-row items-center gap-8">
+        <img src="pictures/importance.png" alt="Importance" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[70%]  text-right ">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Facts & Numbers</h2>
+          <p class="text-lg leading-relaxed">
+            Every 2 seconds, someone in the world requires a blood transfusion due to medical emergencies such as surgery, trauma, childbirth complications, or chronic illnesses.<br><br> A single unit of donated blood can be separated into components and used to save up to three lives by treating patients in critical need of red blood cells, plasma, or platelets.<br><br> Despite India’s large population, only about 1% of eligible individuals donate blood regularly, creating a significant gap between demand and supply in the healthcare system.<br><br> There is currently no artificial or laboratory-made substitute for human blood—meaning the only source for life-saving transfusions is from healthy and willing blood donors.<br><br> O-negative blood is known as the universal donor type because it can be safely given to patients of any other blood group in emergency situations when there is no time to determine compatibility.
+          </p>
+        </div>
+      </section>
+
+      <!-- BLOOD DONATION IN INDIA -->
+      <section id="india" class="flex flex-col md:flex-row-reverse items-center gap-8 bg-orange-100 p-8 rounded-lg shadow">
+        <img src="pictures/thalasemia.png" alt="Donation in India" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[75%] text-left">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Blood Donation in India</h2>
+          <p class="text-lg leading-relaxed">
+             India requires over 12 million units of blood annually. However, myths, fears, and lack of awareness prevent many from donating, resulting in shortages during emergencies. Patients with thalassemia, cancer, or accident-related injuries are especially vulnerable. Initiatives like RaktaMitra and public awareness campaigns are working to bridge this gap, ensuring that every donation truly makes a difference.
+
+          </p>
+        </div>
+      </section>
+
+      <!-- WHO CAN DONATE -->
+      <section id="who" class="flex flex-col md:flex-row items-center gap-8">
+        <img src="pictures/people.png" alt="Who can donate" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[70%]  text-right">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Who Can Donate Blood?</h2>
+          <p class="text-lg leading-relaxed">
+             Blood donation is generally safe for healthy adults between the ages of 18 and 65 years. <br><br> Donors must meet certain basic health criteria to ensure both their safety and that of the recipient.<br><br> Individuals should weigh at least 50 kilograms and have a minimum hemoglobin level of 12.5 g/dL.<br><br> Those who have recently experienced infections or major surgery are advised to wait until full recovery.<br><br> Individuals who are pregnant or breastfeeding are not eligible to donate during that period.
+
+          </p>
+        </div>
+      </section>
+
+      <!-- BENEFITS -->
+      <section id="benefits" class="flex flex-col md:flex-row-reverse items-center gap-8 bg-orange-100 p-8 rounded-lg shadow">
+        <img src="pictures/benefit.png" alt="Benefits of donating" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[75%] text-left">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Benefits of Donating Blood</h2>
+          <p class="text-lg leading-relaxed">
+             Donating blood is not only a generous act that helps save lives, but it also plays a vital role in strengthening the overall healthcare system. Each donation contributes to a reliable supply of blood for patients undergoing surgeries, accident victims, individuals with chronic illnesses, and those requiring regular transfusions. In addition to its life-saving impact, blood donation also offers health benefits to the donor. Before each donation, donors undergo a free basic health screening, including checks for blood pressure, hemoglobin levels, and general fitness, sometimes helping to detect underlying health conditions early. Some studies even suggest that regular blood donation may help reduce the risk of certain health issues, such as excess iron accumulation, which has been linked to heart disease. 
+
+          </p>
+        </div>
+      </section>
+
+      <!-- MYTHS -->
+      <section id="myths" class="flex flex-col md:flex-row items-center gap-8">
+        <img src="pictures/myth.png" alt="Blood donation myths" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[70%]  text-right">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Common Myths Debunked</h2>
+          <p class="text-lg leading-relaxed">
+             Myth: Donating blood causes long-term weakness or fatigue.<br>Fact: The human body naturally replenishes the lost blood within a few weeks and the donors feel normal again.<br><br>Myth: You can catch infections or diseases during the donation process.<br>Fact: All blood donation equipment is completely sterile, single-use, and disposed of after each donation.<br><br>Myth: Only rare blood types are needed, so common types aren’t as important.<br>Fact: Common types are in demand due to their widespread compatibility, all donations contribute to saving lives.
+
+          </p>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process" class="flex flex-col md:flex-row-reverse items-center gap-8 bg-orange-100 p-8 rounded-lg shadow">
+        <img src="pictures/process.png" alt="Donation process" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[75%] text-left">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Blood Donation Process</h2>
+          <p class="text-lg leading-relaxed">
+             The blood donation process is simple, safe, and well-organized to ensure comfort for every donor. It begins with a brief registration where your basic details are recorded. This is followed by a quick health screening, which includes checking your hemoglobin levels and blood pressure to confirm you're fit to donate. Once cleared, the actual donation takes place, during which approximately 350 to 450 milliliters of blood is collected, a process that usually takes less than 15 minutes. After donating, you're encouraged to rest for a short while and enjoy some light refreshments to help your body recover. As a token of appreciation and encouragement, donors often receive a certificate or donor card, which may also help during future medical needs. Overall, it's a smooth experience that makes a big difference in someone’s life.
+          </p>
+        </div>
+      </section>
+
+      <!-- AFTERCARE -->
+      <section id="aftercare" class="flex flex-col md:flex-row items-center gap-8">
+        <img src="pictures/aftercare.png" alt="Aftercare tips" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[70%]  text-right">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Aftercare Tips</h2>
+          <p class="text-lg leading-relaxed">
+            Rest for about 10 to 15 minutes after the donation to prevent any lightheadedness.<br><br> Be sure to consume plenty of fluids and a nourishing meal to replenish your energy and blood volume recovery.<br><br> Avoid any strenuous physical activity or heavy exercise for at least 24 hours following your donation.<br><br> If you start to feel dizzy, sit down or lie flat with your legs elevated until the feeling passes.<br><br> Keep the bandage on your arm for a few hours to minimize the risk of bleeding or bruising at the needle site. 
+          </p>
+        </div>
+      </section>
+
+      <!-- TYPES -->
+      <section id="types" class="flex flex-col md:flex-row-reverse items-center gap-8 bg-orange-100 p-8 rounded-lg shadow">
+        <img src="pictures/types.png" alt="Types of donation" class="w-full md:w-[28%] max-w-smrounded-lg shadow-lg" />
+        <div class="md:w-[75%] text-left">
+          <h2 class="text-3xl font-bold text-red-700 mb-4">Types of Blood Donation</h2>
+          <ul class="list-disc pl-5 text-lg space-y-2">
+            <li><strong>Whole Blood:</strong> Most common, used in transfusions.</li>
+            <li><strong>Platelets:</strong> Collected, rest returned.</li>
+            <li><strong>Plasma:</strong> For burns/clotting issues.</li>
+            <li><strong>Double Red Cells:</strong> For high-need patients.</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-red-700 text-white text-center py-4">
+      <p class="text-sm">&copy; 2025 RaktaMitra. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Donor Health Check Form — RaktaMitra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- SIDEBAR -->
+  <nav class="w-64 bg-red-600 text-white flex flex-col p-6 fixed h-screen shadow-lg z-10">
+    <a href="about_raktamitra.html" class="flex items-center space-x-3 mb-10">
+      <img src="logo.png" alt="RaktaMitra Logo" class="h-10 w-10 rounded-full border-2 border-white" />
+      <span class="text-2xl font-bold hover:underline">RaktaMitra</span>
+    </a>
+    <div class="space-y-3 text-base">
+      <a href="about.html" class="block px-4 py-2 rounded bg-white text-red-700 font-semibold">About Ashayam</a>
+      <a href="faq.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">FAQs</a>
+      <a href="info.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Blood Donation</a>
+      <a href="health.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Health Check</a>
+      <a href="privpol.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Privacy Policy</a>
+      <a href="contact.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Contact Us</a>
+      <a href="logout" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Logout</a>
+    </div>
+  </nav>
+
+    <!-- ────────────────────────────
+         MAIN CONTENT
+    ───────────────────────────── -->
+    <main class="flex-1 ml-64 p-10">
+      <div id="form" class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
+
+        <h2 class="text-3xl font-bold text-red-700 mb-6">Donor Health Check Form</h2>
+
+        <form action="/submit-form" method="POST" class="space-y-6">
+
+          <!-- Name -->
+          <div>
+            <label class="block font-semibold mb-1">Full Name</label>
+            <input type="text" name="name" class="w-full border border-gray-300 rounded px-4 py-2" required />
+          </div>
+
+          <!-- Age -->
+          <div>
+            <label class="block font-semibold mb-1">Age</label>
+            <input type="number" name="age" min="18" max="65"
+                   class="w-full border border-gray-300 rounded px-4 py-2" required />
+            <p class="text-sm text-orange-600 mt-1">You must be between 18 and 65 to donate.</p>
+          </div>
+
+          <!-- Weight -->
+          <div>
+            <label class="block font-semibold mb-1">Weight (kg)</label>
+            <input type="number" name="weight"
+                   class="w-full border border-gray-300 rounded px-4 py-2" required />
+          </div>
+
+          <!-- Last donation date -->
+          <div>
+            <label class="block font-semibold mb-1">Date of Last Donation (if any)</label>
+            <input type="date" name="last_donation" id="last_donation"
+                   class="w-full border border-gray-300 rounded px-4 py-2"
+                   onchange="toggleFaintingQuestion()" />
+          </div>
+
+          <!-- Fainting question -->
+          <div id="fainting_question" class="hidden mt-4">
+            <label class="block font-semibold mb-1">
+              Did you feel dizzy or faint during/after your last donation?
+            </label>
+            <div class="flex space-x-6 mt-2">
+              <label class="inline-flex items-center">
+                <input type="radio" name="fainting" value="yes" class="mr-2" />Yes
+              </label>
+              <label class="inline-flex items-center">
+                <input type="radio" name="fainting" value="no" class="mr-2" />No
+              </label>
+            </div>
+          </div>
+
+          <!-- Recent conditions -->
+          <div id="medical">
+            <label class="block font-semibold mb-2">
+              Have you experienced any of the following in the last 7 days?
+            </label>
+            <div class="space-y-2">
+              <label class="block"><input type="checkbox" name="conditions[]" value="fever"     class="mr-2">Fever</label>
+              <label class="block"><input type="checkbox" name="conditions[]" value="cold"      class="mr-2">Cold/Cough</label>
+              <label class="block"><input type="checkbox" name="conditions[]" value="jaundice"  class="mr-2">Jaundice</label>
+              <label class="block"><input type="checkbox" name="conditions[]" value="malaria"   class="mr-2">Malaria</label>
+              <label class="block"><input type="checkbox" name="conditions[]" value="surgery"   class="mr-2">Major Surgery</label>
+            </div>
+          </div>
+
+          <!-- Medical history -->
+          <div>
+            <label class="block font-semibold mb-2">
+              Have you ever been diagnosed with any of the following?
+            </label>
+            <div class="space-y-2">
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="hyperthyroidism"  class="mr-2">Hyperthyroidism</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="anemia"           class="mr-2">Anemia</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="diabetes_insulin" class="mr-2">Diabetes (on insulin)</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="high_bp"          class="mr-2">High Blood Pressure</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="heart_disease"    class="mr-2">Heart Disease</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="recent_infections"class="mr-2">Dengue/Malaria/Typhoid (3‑6 mo)</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="tattoo_surgery"   class="mr-2">Tattoo/Piercing/Surgery (≤ 12 mo)</label>
+              <label class="block"><input type="checkbox" name="medical_conditions[]" value="cancer"           class="mr-2">History of Cancer</label>
+            </div>
+            <p class="text-sm text-orange-600 mt-2 italic">
+              Some conditions affect eligibility. We’ll review and contact you if needed.
+            </p>
+          </div>
+
+          <!-- Medication -->
+          <div>
+            <label class="block font-semibold mb-1">Are you currently taking any medications?</label>
+            <select name="medication" id="medication-select"
+                    class="w-full border border-gray-300 rounded px-4 py-2" required
+                    onchange="toggleMedicationField()">
+              <option value="">Select an option</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <!-- Medication name -->
+          <div id="medication-name-field" class="mt-4 hidden">
+            <label class="block font-semibold mb-1">Please specify the medication name</label>
+            <input type="text" name="medication_name"
+                   class="w-full border border-gray-300 rounded px-4 py-2" />
+          </div>
+
+          <!-- Women‑specific -->
+          <div id="female">
+            <label class="block font-semibold mb-1">
+              (If female) Are you currently pregnant or breastfeeding?
+            </label>
+            <select name="female_condition"
+                    class="w-full border border-gray-300 rounded px-4 py-2">
+              <option value="">Select an option</option>
+              <option value="not_applicable">Not Applicable</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <!-- Period -->
+          <div>
+            <label class="block font-semibold mb-1">(If female) Are you on your period?</label>
+            <select name="menstrual_cycle"
+                    class="w-full border border-gray-300 rounded px-4 py-2">
+              <option value="">Select an option</option>
+              <option value="not_applicable">Not Applicable</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+            <p class="text-sm text-orange-600 mt-2">
+              You may donate during your period if you feel healthy and hydrated.
+            </p>
+          </div>
+
+          <!-- Agreement -->
+          <div>
+            <label class="inline-flex items-center">
+              <input type="checkbox" name="confirm" required class="mr-2" />
+              I confirm the information provided is accurate to the best of my knowledge.
+            </label>
+          </div>
+
+          <!-- Submit -->
+          <div id="submit">
+            <button type="submit"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2 rounded">
+              Submit Form
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-red-600 text-white text-center py-4">
+      <p class="text-sm">&copy; 2025 RaktaMitra. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- ────────────────────────────
+       SCRIPTS
+  ───────────────────────────── -->
+  <script>
+    function toggleFaintingQuestion () {
+      const donationDate   = document.getElementById('last_donation').value;
+      const faintingDiv    = document.getElementById('fainting_question');
+      donationDate ? faintingDiv.classList.remove('hidden')
+                   : faintingDiv.classList.add('hidden');
+    }
+
+    function toggleMedicationField () {
+      const select = document.getElementById('medication-select');
+      const field  = document.getElementById('medication-name-field');
+      field.classList.toggle('hidden', select.value !== 'yes');
+    }
+  </script>
+
+</body>
+</html>
