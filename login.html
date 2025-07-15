@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>RaktaMitra | Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<!-- <body class="text-gray-800 bg-opacity-90 backdrop-blur-md"> -->
+<body class="flex items-center justify-center h-screen bg-red-50" class="text-gray-800 bg-opacity-90 backdrop-blur-md">
+
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center text-red-700 mb-6">Login to RaktaMitra</h2>
+
+    <form id="login-form" class="space-y-4">
+      <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}"
+        class="w-full border px-4 py-2 rounded focus:outline-red-400" required>
+
+      <input type="password" name="password" placeholder="Password"
+        class="w-full border px-4 py-2 rounded focus:outline-red-400" required>
+
+      <select name="role" class="w-full border px-4 py-2 rounded focus:outline-red-400" required>
+        <option value="Patient">🧑‍⚕️ Patient</option>
+        <option value="Donor">🩸 Donor</option>
+        <option value="Admin">👨‍💼 Admin</option>
+      </select>
+
+      <button type="submit"
+        class="w-full bg-red-600 text-white py-2 font-semibold rounded hover:bg-red-700">Login</button>
+    </form>
+
+    <p class="mt-4 text-center text-sm">New here?
+        <a href="signup.html" class="text-red-500 underline">Create an account</a>
+
+    </p>
+  </div>
+  <script src="/js/login.js"></script>
+
+</body>
+</html>

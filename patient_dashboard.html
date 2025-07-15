@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Patient Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: url('pictures/patient.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .active-btn {
+      background-color: #fecaca;
+      color: #7f1d1d;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex bg-white bg-opacity-60">
+
+  <!-- Sidebar -->
+  <aside class="w-56 bg-red-600 text-white p-6 flex flex-col space-y-4 min-h-screen">
+    <div class="flex items-center space-x-3">
+      <img src="logo.png" alt="Logo" class="h-10 w-10 rounded-full" />
+      <span class="text-xl font-bold">RaktaMitra</span>
+    </div>
+    <button onclick="showSection('profile', this)"
+      class="px-4 py-2 rounded hover:bg-red-400 transition">Profile</button>
+    <button onclick="showSection('form', this)"
+      class="px-4 py-2 rounded hover:bg-red-400 transition">Blood Request</button>
+    <button onclick="showSection('history', this)"
+      class="px-4 py-2 rounded hover:bg-red-400 transition">Request History</button>
+  </aside>
+
+  <!-- Content -->
+  <main class="flex-1 p-6 overflow-y-auto">
+
+    <!-- Patient Profile -->
+    <section id="profile" class="hidden max-w-xl mx-auto bg-orange-100 p-6 rounded-lg shadow text-center">
+      <h2 class="text-2xl font-semibold mb-4 text-red-700">Patient Profile</h2>
+      <img src="pictures/pat1.png" alt="Patient"
+        class="w-32 h-32 rounded-full border-4 border-red-500 mx-auto mb-4" />
+      <div class="space-y-4 text-left">
+        <input id="profileName" type="text" class="w-full p-2 border rounded" placeholder="Full Name" />
+        <input id="profileEmail" type="email" class="w-full p-2 border rounded" placeholder="Email" />
+        <input id="profilePhone" type="text" class="w-full p-2 border rounded" placeholder="Phone Number" />
+        <input id="profileBlood" type="text" class="w-full p-2 border rounded" placeholder="Blood Group" />
+        <button onclick="saveProfile()"
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition mt-4">Save Profile</button>
+      </div>
+    </section>
+
+    <!-- Blood Request Form -->
+    <section id="form" class="hidden max-w-xl mx-auto bg-orange-100 p-6 rounded-lg shadow">
+        <h2 class="text-2xl font-semibold mb-4 text-red-700">Blood Request Form</h2>
+        <form id="requestForm" class="space-y-4">
+          <select name="bloodGroup" class="w-full p-2 border rounded" required>
+            <option value="">Select Blood Group</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+          </select>
+      
+          <input type="text" name="hospitalName" placeholder="Hospital Name" class="w-full p-2 border rounded" required />
+          <input type="text" name="hospitalContact" placeholder="Hospital Contact Number" class="w-full p-2 border rounded" />
+      
+          <!-- ✅ New Units Needed input -->
+          <input type="number" name="unitsNeeded" placeholder="Units Needed" class="w-full p-2 border rounded" min="1" required />
+      
+          <select name="location" class="w-full p-2 border rounded" required>
+            <option value="">Select Location</option>
+            <option>Bengaluru</option>
+            <option>Hyderabad</option>
+            <option>Chennai</option>
+            <option>Nellore</option>
+            <option>Tirupati</option>
+            <option>Vizag</option>
+            <option>Kakinada</option>
+            <option>Vijayawada</option>
+            <option>Guntur</option>
+          </select>
+      
+          <select name="urgency" class="w-full p-2 border rounded" required>
+            <option value="">Select Urgency</option>
+            <option>High</option><option>Medium</option><option>Low</option>
+          </select>
+      
+          <input type="date" name="requestDate" class="w-full p-2 border rounded" required />
+      
+          <button type="submit"
+            class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Submit</button>
+        </form>
+      </section>
+      
+
+   <!-- Request History -->
+<section id="history" class="hidden max-w-4xl mx-auto bg-orange-50 p-6 rounded-lg shadow">
+  <h2 class="text-2xl font-semibold mb-4 text-red-700">Request History</h2>
+  <table class="w-full table-auto border-collapse">
+    <thead>
+      <tr class="bg-green-200">
+        <th class="border p-2">Request Date</th>
+        <th class="border p-2">Blood Group</th>
+        <th class="border p-2">Status</th>
+        <th class="border p-2">Donors</th>
+
+      </tr>
+    </thead>
+    <tbody id="historyTable"></tbody>
+  </table>
+</section>
+
+  </main>
+
+  <script src="/js/patient_dashboard.js"></script>
+
+</body>
+
+</html>

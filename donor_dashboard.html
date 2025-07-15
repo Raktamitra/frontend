@@ -1,0 +1,39 @@
+<div class="container">
+    <h3>Complete Your Profile</h3>
+  
+    <!-- Profile photo section -->
+    <div class="profile-photo-section">
+      <label for="photo-upload">
+        <img id="profile-pic-preview" src="/static/images/default-avatar.png" alt="Profile Picture">
+      </label>
+      <input type="file" id="photo-upload" name="profile_photo" accept="image/*" style="display: none;">
+      <p class="upload-text">Click image to upload photo</p>
+    </div>
+  
+    <form method="POST" action="/donor/profile_completion" enctype="multipart/form-data">
+      <label>Name:</label>
+      <input type="text" name="name" placeholder="Your Name" required>
+  
+      <label>Age:</label>
+      <input type="number" name="age" min="18" max="65" required>
+  
+      <label>Blood Group:</label>
+      <select name="blood_group" required>
+        <option value="">Select Blood Group</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+  
+      <label>Location / Unit:</label>
+      <input type="text" name="location" placeholder="City / Hospital" required>
+  
+      <button type="submit" class="btn">Save Profile</button>
+    </form>
+  </div>
+  
