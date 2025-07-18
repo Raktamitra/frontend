@@ -1,0 +1,66 @@
+/* notify-donors.css - Styles for notify-donors.html */
+.notification-form-container {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.compatibility-results {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.compatible-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.blood-group-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.blood-group-badge.Apos { background-color: #e74c3c; }
+.blood-group-badge.Aneg { background-color: #c0392b; }
+.blood-group-badge.Bpos { background-color: #3498db; }
+.blood-group-badge.Bneg { background-color: #2980b9; }
+.blood-group-badge.ABpos { background-color: #9b59b6; }
+.blood-group-badge.ABneg { background-color: #8e44ad; }
+.blood-group-badge.Opos { background-color: #2ecc71; }
+.blood-group-badge.Oneg { background-color: #27ae60; }
+
+.donors-count {
+    margin: 15px 0;
+    font-weight: 500;
+}
+
+.donors-list {
+    margin-top: 30px;
+}
+
+.donors-table th,
+.donors-table td {
+    padding: 10px;
+}
+
+.donors-table th:first-child,
+.donors-table td:first-child {
+    width: 40px;
+}
+
+.not-eligible {
+    opacity: 0.6;
+    background: #f9f9f9;
+}
+
+.donors-table th:first-child input[type="checkbox"] {
+    margin: 0;
+}
