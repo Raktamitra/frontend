@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Responses | Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <!-- In head section -->
+<link rel="stylesheet" href="Admin_css/base.css">
+<link rel="stylesheet" href="Admin_css/donor-responses.css">
+
+<!-- Before closing body tag -->
+<script src="Admin/Admin_js/admin.js"></script>
+<script src="Admin/Admin_js/donor-responses.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/logo.png" alt="Blood Donation System Logo">
+                <h1>Admin Panel</h1>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="manage-requests.html"><i class="fas fa-tasks"></i> Manage Requests</a></li>
+                    <li><a href="notify-donors.html"><i class="fas fa-bell"></i> Notify Donors</a></li>
+                    <li><a href="blood-compatibility.html"><i class="fas fa-heartbeat"></i> Blood Compatibility</a></li>
+                    <li class="active"><a href="donor-responses.html"><i class="fas fa-comments"></i> Donor Responses</a></li>
+                    <li><a href="units-data.html"><i class="fas fa-flask"></i> Units Data</a></li>
+                </ul>
+            </nav>
+            
+            <div class="logout">
+                <a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Donor Response Management</h2>
+
+            </header>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label for="responseStatus">Response Status:</label>
+                    <select id="responseStatus">
+                        <option value="all">All Responses</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="declined">Declined</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="requestId">Request ID:</label>
+                    <input type="text" id="requestId" placeholder="Enter request ID">
+                </div>
+                
+                <button id="applyFilters" class="btn-primary">Apply Filters</button>
+                <button id="resetFilters" class="btn-secondary">Reset</button>
+            </div>
+
+            <!-- Responses Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Donor Name</th>
+                            <th>Blood Group</th>
+                            <th>Phone Number</th>
+                            <th>Response</th>
+                            <th>Timestamp</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="responsesTableBody">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button disabled><i class="fas fa-chevron-left"></i></button>
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <button><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+ 
+    <!-- Donor Responses JS -->
+    <script src="Admin_js/admin.js"></script>
+<script src="Admin_js/donor-responses.js"></script>
+
+</body>
+</html>

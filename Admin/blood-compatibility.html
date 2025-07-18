@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Compatibility | Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="Admin_css/base.css">
+<link rel="stylesheet" href="Admin_css/blood-compatibility.css"> <!-- or the specific page CSS -->
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="Assets/logo.png" alt="Blood Donation System Logo">
+                <h1>Admin Panel</h1>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="manage-requests.html"><i class="fas fa-tasks"></i> Manage Requests</a></li>
+                    <li><a href="notify-donors.html"><i class="fas fa-bell"></i> Notify Donors</a></li>
+                    <li class="active"><a href="blood-compatibility.html"><i class="fas fa-heartbeat"></i> Blood Compatibility</a></li>
+                    <li><a href="donor-responses.html"><i class="fas fa-comments"></i> Donor Responses</a></li>
+                    <li><a href="units-data.html"><i class="fas fa-flask"></i> Units Data</a></li>
+                </ul>
+            </nav>
+            
+            <div class="logout">
+                <a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Blood Type Compatibility Checker</h2>
+            </header>
+
+            <!-- Compatibility Checker -->
+            <div class="compatibility-checker">
+                <div class="form-group">
+                    <label for="patientBloodGroup">Patient's Blood Group</label>
+                    <select id="patientBloodGroup">
+                        <option value="">Select Blood Group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                
+                <button id="checkCompatibility" class="btn-primary">
+                    <i class="fas fa-heartbeat"></i> Check Compatibility
+                </button>
+                
+                <!-- Results Section -->
+                <div id="compatibilityResults" class="compatibility-results" style="display: none;">
+                    <h3>Compatible Donor Blood Groups</h3>
+                    <div id="compatibleGroups" class="compatible-groups">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="compatibility-info">
+                        <h4>Compatibility Rules:</h4>
+                        <ul>
+                            <li>Group O can donate to all groups (universal donor)</li>
+                            <li>Group A can donate to A and AB</li>
+                            <li>Group B can donate to B and AB</li>
+                            <li>Group AB can donate only to AB</li>
+                            <li>Rh-negative can donate to Rh-positive and Rh-negative</li>
+                            <li>Rh-positive can donate only to Rh-positive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Blood Type Chart -->
+            <div class="blood-type-chart">
+                <h3>Blood Type Compatibility Chart</h3>
+                <img src="../../assets/blood-compatibility-chart.png" alt="Blood Type Compatibility Chart">
+                <p class="chart-note">Reference chart for blood type compatibility</p>
+            </div>
+        </main>
+    </div>
+   
+<script src="Admin_js/admin.js"></script>
+<script src="Admin_js/blood-compatibility.js"></script>
+</body>
+
+</html>
