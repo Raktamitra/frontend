@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donation History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/notification_history.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h3>Your Donation History</h3>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Patient Name</th>
+                <th>Location</th>
+                <th>Status</th>
+            </tr>
+            {% for history in donation_history %}
+            <tr>
+                <td>{{ history.date }}</td>
+                <td>{{ history.patient_name }}</td>
+                <td>{{ history.location }}</td>
+                <td>{{ history.status }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4">No history yet.</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('donor_dashboard') }}">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
