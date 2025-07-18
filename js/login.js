@@ -89,7 +89,7 @@ document.getElementById("login-form").addEventListener("submit", (e) => {
 
       if (data.role === "Donor" && !data.is_profile_complete) {
         window.location.href = "complete_profile.html";
-      } else if (data.role === "donor") {
+      } else if (data.role === "Donor") {
         window.location.href = "donor_dashboard.html";
       } else if (data.role === "Admin") {
         window.location.href = "admin_dashboard.html";
