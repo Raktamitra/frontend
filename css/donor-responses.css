@@ -1,0 +1,58 @@
+.main-content {
+    margin-left: 250px;
+    /* Adjust if your sidebar is wider/narrower */
+    padding: 20px;
+}
+
+.search-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-box button {
+    padding: 8px 12px;
+    margin-left: 8px;
+    border: none;
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-options select,
+.filter-options button {
+    padding: 8px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.data-table th {
+    background-color: #f4f4f4;
+}
+
+.loading-message {
+    text-align: center;
+    font-style: italic;
+}
