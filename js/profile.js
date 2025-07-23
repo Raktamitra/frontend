@@ -163,6 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dob: document.getElementById("profileDOB").value,
         gender: document.getElementById("profileGender").value,
         bloodGrp: document.getElementById("profileBlood").value,
+        lastDonated: document.getElementById("profileLastDonated").value || null,
+        totalDonations: 0,
         address: document.getElementById("profileAddress").value,
         city: document.getElementById("profileCity").value,
         state: document.getElementById("profileState").value,
@@ -170,6 +172,26 @@ document.addEventListener('DOMContentLoaded', () => {
         lat: locationLat.value,
         lng: locationLng.value
     };
+
+    // Validate last donation date if provided
+    const lastDonatedInput = document.getElementById("profileLastDonated");
+    if (lastDonatedInput.value) {
+        const lastDonationDate = new Date(lastDonatedInput.value);
+        const today = new Date();
+        
+        if (lastDonationDate > today) {
+            showToast("Last donation date cannot be in the future", "error");
+            return;
+        }
+        
+        // Validate minimum age
+        const dob = new Date(document.getElementById("profileDOB").value);
+        const ageAtDonation = lastDonationDate.getFullYear() - dob.getFullYear();
+        if (ageAtDonation < 18) {
+            showToast("You must have been at least 18 years old when you donated", "error");
+            return;
+        }
+    }
 
     try {
         await fetch(`${BASE_URL}/api/auth/profile`, {

@@ -14,6 +14,12 @@
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   ></script>
+  <!-- Leaflet Control Geocoder -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+  />
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <style>
     body {
       background: url('pictures/patient.png') no-repeat center center fixed;
@@ -67,6 +73,24 @@
     .toast.warning {
       background-color: #f59e0b;
     }
+
+    .btn-accept {
+      background-color: #10b981;
+      color: white;
+    }
+
+    .btn-reject {
+      background-color: #ef4444;
+      color: white;
+    }
+
+    .btn-accept:hover {
+      background-color: #059669;
+    }
+
+    .btn-reject:hover {
+      background-color: #dc2626;
+    }
   </style>
 </head>
 
@@ -91,6 +115,10 @@
     <button onclick="showSection('history', this)" class="px-4 py-2 rounded hover:bg-red-400 transition flex items-center space-x-2">
       <i class="fas fa-history"></i>
       <span>Request History</span>
+    </button>
+    <button onclick="showSection('accepted', this)" class="px-4 py-2 rounded hover:bg-red-400 transition flex items-center space-x-2">
+      <i class="fas fa-check-circle"></i>
+      <span>Accepted requests</span>
     </button>
     <div class="mt-auto">
       <button onclick="logout()" class="px-4 py-2 rounded hover:bg-red-400 transition w-full flex items-center space-x-2">
@@ -118,7 +146,7 @@
       </h2>
       <div class="flex flex-col md:flex-row gap-6">
         <div class="flex flex-col items-center">
-          <img src="pictures/pat1.png" alt="Patient" class="w-32 h-32 rounded-full border-4 border-red-500 mb-4" />
+          <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="Patient" class="w-32 h-32 rounded-full border-4 border-red-500 mb-4" />
           <button id="changePhotoBtn" class="text-sm text-red-600 hover:text-red-800">
             <i class="fas fa-camera mr-1"></i>Change Photo
           </button>
@@ -178,12 +206,29 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label for="profileCity" class="block text-sm font-semibold text-red-900">City</label>
-              <input id="profileCity" type="text" class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500" required />
+              <select id="profileCity" class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500" required>
+                <option value="" selected disabled>Select City</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Nellore">Nellore</option>
+                <option value="Tirupati">Tirupati</option>
+                <option value="Vizag">Vizag</option>
+                <option value="Kakinada">Kakinada</option>
+                <option value="Vijayawada">Vijayawada</option>
+                <option value="Guntur">Guntur</option>
+              </select>
             </div>
 
             <div>
               <label for="profileState" class="block text-sm font-semibold text-red-900">State</label>
-              <input id="profileState" type="text" class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500" required />
+              <select id="profileState" class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500" required>
+                <option value="" selected>Select State</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+              </select>
             </div>
 
             <div>
@@ -249,15 +294,22 @@
             <input type="hidden" name="latitude" id="latitude" />
             <input type="hidden" name="longitude" id="longitude" />
             <p class="text-sm text-gray-600 mt-1">Click on the map to select your hospital location.</p>
+            <p class="text-sm text-red-600 mt-2 font-semibold">
+              Blood donation services currently available in: 
+              Bengaluru, Hyderabad, Chennai, Nellore, Tirupati, Vizag, Kakinada, Vijayawada, Guntur
+            </p>
+            <p class="text-xs text-gray-500 mt-1">
+              We're working to expand our network to serve more locations soon.
+            </p>
           </div>
 
           <div>
             <label class="block font-medium text-red-900">Urgency</label>
             <select name="urgency" class="w-full p-2 border rounded focus:ring-2 focus:ring-red-500" required>
               <option value="">Select Urgency</option>
-              <option>High (Within 24 hours)</option>
-              <option>Medium (Within 3 days)</option>
-              <option>Low (Within a week)</option>
+              <option value="High">High (Within 24 hours)</option>
+              <option value="Medium">Medium (Within 3 days)</option>
+              <option value="Low">Low (Within a week)</option>
             </select>
           </div>
         </div>
@@ -318,6 +370,41 @@
         <button id="next-page" class="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
           Next <i class="fas fa-chevron-right"></i>
         </button>
+      </div>
+    </section>
+
+    <!-- Accepted Requests Section -->
+    <section id="accepted" class="hidden max-w-4xl mx-auto bg-orange-50 p-6 rounded-lg shadow">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold text-red-700 flex items-center space-x-2">
+          <i class="fas fa-check-circle"></i>
+          <span>Accepted Requests</span>
+        </h2>
+        <button id="refresh-accepted" class="text-red-600 hover:text-red-800">
+          <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+      </div>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full table-auto border-collapse">
+          <thead>
+            <tr class="bg-green-200">
+              <th class="border p-2">Request ID</th>
+              <th class="border p-2">Donor Name</th>
+              <th class="border p-2">Donor Contact</th>
+              <th class="border p-2">Blood Group</th>
+              <th class="border p-2">Units</th>
+              <th class="border p-2">Hospital</th>
+              <th class="border p-2">Status</th>
+              <th class="border p-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="acceptedTable">
+            <tr>
+              <td colspan="8" class="text-center p-4">Loading accepted requests...</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>

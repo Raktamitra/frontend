@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevPageBtn = document.getElementById("prev-page");
   const nextPageBtn = document.getElementById("next-page");
   const loadingIndicator = document.getElementById("loading");
+  const refreshAcceptedBtn = document.getElementById("refresh-accepted");
+
 
   // Initialize variables
   let currentPage = 1;
@@ -49,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (refreshHistoryBtn) refreshHistoryBtn.addEventListener("click", fetchRequestHistory);
   if (prevPageBtn) prevPageBtn.addEventListener("click", () => changePage(-1));
   if (nextPageBtn) nextPageBtn.addEventListener("click", () => changePage(1));
+  if (refreshAcceptedBtn) refreshAcceptedBtn.addEventListener("click", fetchAcceptedRequests);
 
   // Initial data loading
   Promise.all([
     fetchProfile(),
-    fetchRequestHistory()
+    fetchRequestHistory(),
+    fetchAcceptedRequests()
   ]).catch(err => {
     console.error("Initial data loading error:", err);
     showToast("Failed to load initial data", "error");
@@ -80,20 +84,28 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchWithAuth(url, options = {}) {
     showLoading(true);
     try {
+      const headers = {
+        ...options.headers,
+        "Authorization": `Bearer ${token}`
+      };
+
+      const isFormData = options.body instanceof FormData;
+
+      // Only set Content-Type if there's a body and it's not FormData
+      if (options.body && !isFormData) {
+        headers["Content-Type"] = "application/json";
+      }
+
       const response = await fetch(url, {
         ...options,
-        headers: {
-          ...options.headers,
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
+        headers
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Request failed");
       }
-      
+
       return await response.json();
     } catch (error) {
       console.error("API Error:", error);
@@ -104,20 +116,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   // ================================
   // 📌 Profile Functions
   // ================================
   
   async function fetchProfile() {
     try {
-      const data = await fetchWithAuth(`${BASE_URL}/api/auth/profile`);
+      const response = await fetchWithAuth(`${BASE_URL}/api/auth/profile`);
+      const data = response.user;
+      console.log(data)
       
       // Fill form fields
       document.getElementById("profileName").value = data.name || "";
       document.getElementById("profileEmail").value = data.email || "";
       document.getElementById("profilePhone").value = data.phone || "";
       document.getElementById("profileAge").value = data.age || "";
-      document.getElementById("profileDOB").value = data.dob ? data.dob.split('T')[0] : "";
+      const dobString = data.dob?.$date || "";
+      document.getElementById("profileDOB").value = dobString ? new Date(dobString).toISOString().split('T')[0] : "";
       document.getElementById("profileGender").value = data.gender || "";
       document.getElementById("profileBlood").value = data.bloodGrp || "";
       document.getElementById("profileAddress").value = data.address || "";
@@ -310,5 +326,104 @@ document.addEventListener("DOMContentLoaded", () => {
   window.viewRequestDetails = (requestId) => {
     // Implement request details view
     showToast(`Viewing details for request ${requestId}`, "info");
+  };
+
+  async function fetchAcceptedRequests() {
+    try {
+      const response = await fetchWithAuth(`${BASE_URL}/api/requests/accepted`);
+      const data = response.requests
+      console.log(response)
+      renderAcceptedRequests(data);
+    } catch (error) {
+      console.error("Error fetching accepted requests:", error);
+      showToast("Failed to load accepted requests", "error");
+    }
+  }
+
+  function renderAcceptedRequests(requests) {
+    const acceptedTable = document.getElementById("acceptedTable");
+    
+    if (!requests || requests.length === 0) {
+      acceptedTable.innerHTML = `
+        <tr>
+          <td colspan="8" class="text-center p-4">No accepted requests found</td>
+        </tr>
+      `;
+      return;
+    }
+    
+    acceptedTable.innerHTML = requests.map(request => `
+      <tr class="hover:bg-gray-50">
+        <td class="border p-2">${request.requestId || 'N/A'}</td>
+        <td class="border p-2">${request.donorName || 'N/A'}</td>
+        <td class="border p-2">${request.donorPhone || 'N/A'}</td>
+        <td class="border p-2">${request.bloodGroup}</td>
+        <td class="border p-2">${request.unitsNeeded}</td>
+        <td class="border p-2">${request.hospitalName}</td>
+        <td class="border p-2">
+          <span class="px-2 py-1 rounded-full text-xs 
+            ${request.status === 'Accepted' ? 'bg-blue-100 text-blue-800' : 
+              'bg-gray-100 text-gray-800'}">
+            ${request.status}
+          </span>
+        </td>
+        <td class="border flex p-2 text-center">
+          <button class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 mr-2" 
+                  onclick="confirmAcceptRequest('${request.requestId}','${request.donorId}','${request.responseId}')">
+            <i class="fas fa-check mr-1"></i>
+          </button>
+          <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" 
+                  onclick="rejectRequest('${request.requestId}','${request.donorId}','${request.responseId}')">
+            <i class="fas fa-times mr-1"></i>
+          </button>
+        </td>
+      </tr>
+    `).join("");
+  }
+
+  window.confirmAcceptRequest = async (requestId, donorId, responseId) => {
+    data = {
+      donor_id: donorId,
+      response_id: responseId
+    }
+    if (confirm("Are you sure you want to accept this donor?")) {
+      try {
+        showLoading(true);
+        await fetchWithAuth(`${BASE_URL}/api/requests/${requestId}/confirm`, {
+          method: "PUT",
+          body: JSON.stringify(data)
+        });
+        showToast("Donor accepted successfully");
+        fetchAcceptedRequests();
+        fetchRequestHistory();
+      } catch (error) {
+        showToast(error.message || "Failed to accept donor", "error");
+      } finally {
+        showLoading(false);
+      }
+    }
+  };
+
+  window.rejectRequest = async (requestId, donorId, responseId) => {
+    data = {
+      donor_id: donorId,
+      response_id: responseId
+    }
+    if (confirm("Are you sure you want to reject this donor?")) {
+      try {
+        showLoading(true);
+        await fetchWithAuth(`${BASE_URL}/api/requests/${requestId}/reject`, {
+          method: "PUT",
+          body: JSON.stringify(data)
+        });
+        showToast("Donor rejected successfully");
+        fetchAcceptedRequests();
+        fetchRequestHistory();
+      } catch (error) {
+        showToast(error.message || "Failed to reject donor", "error");
+      } finally {
+        showLoading(false);
+      }
+    }
   };
 });

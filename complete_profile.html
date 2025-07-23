@@ -241,6 +241,14 @@
           </div>
 
           <div>
+            <label for="profileLastDonated" class="block text-sm font-semibold text-gray-700 mb-1">Last Donation Date</label>
+            <input id="profileLastDonated" type="date" 
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition" 
+                  max="" />
+            <p class="text-xs text-gray-500 mt-1">Leave blank if you've never donated before</p>
+          </div>
+
+          <div>
             <label for="profileDOB" class="block text-sm font-semibold text-gray-700 mb-1">Date of Birth *</label>
             <input id="profileDOB" type="date" 
                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition" 
@@ -259,16 +267,33 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label for="profileCity" class="block text-sm font-semibold text-gray-700 mb-1">City *</label>
-            <input id="profileCity" type="text" 
+            <select id="profileCity" type="text" 
                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition" 
-                   placeholder="Mumbai" required />
+                   placeholder="Mumbai" required >
+              <option value="">Select City</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Nellore">Nellore</option>
+              <option value="Tirupati">Tirupati</option>
+              <option value="Vizag">Vizag</option>
+              <option value="Kakinada">Kakinada</option>
+              <option value="Vijayawada">Vijayawada</option>
+              <option value="Guntur">Guntur</option>
+            </select>
           </div>
 
           <div>
             <label for="profileState" class="block text-sm font-semibold text-gray-700 mb-1">State *</label>
-            <input id="profileState" type="text" 
+            <select id="profileState" type="text" 
                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition" 
-                   placeholder="Maharashtra" required />
+                   placeholder="Maharashtra" required >
+              <option value="">Select State</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+            </select>
           </div>
 
           <div>
@@ -278,6 +303,13 @@
                    placeholder="400001" required pattern="\d{6}" />
           </div>
         </div>
+        <p class="text-sm text-red-600 mt-2 font-semibold">
+          Blood donation services currently available in: 
+          Bengaluru, Hyderabad, Chennai, Nellore, Tirupati, Vizag, Kakinada, Vijayawada, Guntur
+        </p>
+        <p class="text-xs text-gray-500 mt-1">
+          We're working to expand our network to serve more locations soon.
+        </p>
 
         <!-- Location Preferences -->
         <div class="bg-red-50 p-4 rounded-lg">
