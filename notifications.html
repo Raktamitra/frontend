@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/notification_history.css') }}">
+</head>
+<body>
+<div class="container">
+    <h3>Your Notifications</h3>
+
+    {% if notifications %}
+        {% for notification in notifications %}
+        <div class="notification-card">
+            <p>{{ notification.message }}</p>
+            <form method="POST" action="/donor/notification_response">
+                <input type="hidden" name="notification_id" value="{{ notification._id }}">
+                <button type="submit" name="response" value="accepted">✅ Accept</button>
+                <button type="submit" name="response" value="rejected">❌ Reject</button>
+            </form>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No notifications yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('donor_dashboard') }}">← Back to Dashboard</a>
+</div>
+</body>
+</html>
