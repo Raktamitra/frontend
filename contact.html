@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | RaktaMitra</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="text-gray-1000 bg-opacity-90 backdrop-blur-md">
+  <!-- Audio -->
+  <audio id="click-sound" src="./assets/audio/click.mp3" preload="auto"></audio>
+
+  <!-- MAIN WRAPPER (Sidebar + Content) -->
+  <div class="min-h-screen flex">
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="w-64 bg-red-600 text-white flex flex-col p-6 shadow-lg transition-all duration-300 ease-in-out">
+      <div class="flex items-center justify-between mb-6">
+        <a href="about_raktamitra.html" class="flex items-center space-x-3">
+          <img src="logo.png" alt="RaktaMitra Logo" class="h-10 w-10 rounded-full border-2 border-white" />
+          <span class="text-2xl font-bold hover:underline">RaktaMitra</span>
+        </a>
+        <!-- Toggle Button -->
+        <button onclick="toggleSidebar()" class="text-white text-2xl focus:outline-none">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-base">
+         <a href="index.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Home</a>
+        
+        <a href="about.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">About Ashayam</a>
+        <a href="faq.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">FAQs</a>
+        <a href="info.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Blood Donation</a>
+        <a href="blood-compat.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Blood-Compatibility</a>
+        <a href="privpol.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Privacy Policy</a>
+        <a href="contact.html" class="block px-4 py-2 rounded bg-white text-red-700 font-semibold">Contact Us</a>
+        <!-- <a href="index.html" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Home</a> -->
+      <!-- <a href="logout" class="block px-4 py-2 rounded hover:bg-white hover:text-red-700">Logout</a> -->
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col px-4 py-8">
+      <!-- Toggle Button for opening Sidebar -->
+      <button id="openSidebarBtn" onclick="toggleSidebar()" class="fixed top-4 left-4 bg-red-600 text-white px-3 py-2 rounded shadow-lg z-20 hidden">
+        ☰ Menu
+      </button>
+
+      <!-- Header -->
+      <header class="w-full max-w-5xl mb-6 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-white flex gap-2 items-center">
+          <!-- <img src="./assets/images/logo.png" class="w-8 h-8" alt="RaktaMitra Logo"> -->
+          Contact Us
+        </h1>
+      </header>
+
+      <!-- Contact Form Section -->
+      <div class="w-full max-w-3xl bg-white/90 rounded-lg shadow-lg p-8">
+        <h1 class="text-4xl font-bold text-red-700 mb-6 border-b pb-2">Get In Touch</h1>
+
+        <!-- Form -->
+        <form class="space-y-6">
+          
+        </form>
+
+        <!-- Contact Info -->
+        <div class="mt-10 border-t pt-6">
+          <h2 class="text-2xl font-bold text-red-700 mb-3">Ways to Reach Us</h2>
+          <div class="space-y-2">
+            <p class="flex items-center">
+              <i class="fas fa-envelope mr-2 text-red-600"></i>
+              <a href="mailto:contact@raktamitra.org" class="text-red-600 hover:underline">contact@raktamitra.org</a>
+            </p>
+            <p class="flex items-center">
+              <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
+              Across 8+ cities in India
+            </p>
+            <p class="flex items-center">
+              <i class="fas fa-hashtag mr-2 text-red-600"></i>
+              <span class="font-medium">@raktamitra</span> on Instagram, Facebook & LinkedIn
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white text-center py-4">
+    <p class="text-sm">&copy; 2025 RaktaMitra. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/home.js"></script>
+</body>
+</html>
